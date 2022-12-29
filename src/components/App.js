@@ -58,7 +58,6 @@ const App = () => {
   return (
     <div className="scoreboard">
       <Header
-        title="Scoreboard"
         players={ players }
       />
 
