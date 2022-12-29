@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Header from "./Header"
 import Player from "./Player"
 import AddPlayerForm from "./AddPlayerForm"
@@ -41,6 +41,19 @@ const App = () => {
     }))
   }
 
+  const [highScore, setHighScore] = useState()
+
+  useEffect(() => {
+    const scores = players.map(player => player.score)
+    setHighScore(Math.max(...scores))
+  }, [players])
+
+  // const getHighScore = () => {
+  //   let highScore = 0
+  //   for (let player of players) if (player.score > highScore) highScore = player.score
+  //   return highScore
+  // }
+
   const handleRemovePlayer = (id) => {
     setPlayers(prevPlayers => prevPlayers.filter(p => p.id !== id))
   }
@@ -70,6 +83,7 @@ const App = () => {
           key={ player.id.toString() }
           removePlayer={ handleRemovePlayer }
           changeScore={ handleScoreChange }
+          isHighScore={ highScore === player.score && player.score > 0 }
         />
       ) }
       <AddPlayerForm
