@@ -48,12 +48,6 @@ const App = () => {
     setHighScore(Math.max(...scores))
   }, [players])
 
-  // const getHighScore = () => {
-  //   let highScore = 0
-  //   for (let player of players) if (player.score > highScore) highScore = player.score
-  //   return highScore
-  // }
-
   const handleRemovePlayer = (id) => {
     setPlayers(prevPlayers => prevPlayers.filter(p => p.id !== id))
   }
